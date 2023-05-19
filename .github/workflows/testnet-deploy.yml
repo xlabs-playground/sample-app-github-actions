@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  preview-build:
+  testnet-build:
     runs-on: "ubuntu-latest"
     permissions:
       contents: write
