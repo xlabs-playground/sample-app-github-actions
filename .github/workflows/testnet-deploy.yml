@@ -77,6 +77,10 @@ jobs:
         with:
           ref: testnet
           path: testnet
+      - name: Setup Git
+        run: |
+          git config --global user.name "xLabs Playground CI"
+          git config --global user.email "devops@xlabs-playground.xyz"
       - name: Compute Version
         run: |
           echo "_PKG_VERSION=$(node -p -e "require('./package.json').version")" >> "${GITHUB_ENV}"
