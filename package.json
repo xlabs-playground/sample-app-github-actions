@@ -1,0 +1,8 @@
+{
+    "name": "@xlabs-playground/short-sha256sum-action",
+    "version": "0.0.0",
+    "scripts": {
+        "build": "bash scripts/build.sh preview"
+    },
+    "dependencies": {}
+}
