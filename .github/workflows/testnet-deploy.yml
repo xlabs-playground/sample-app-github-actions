@@ -74,7 +74,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: testnet
-          path: testnet
       - name: Setup Git
         run: |
           git config user.name "xLabs Playground CI"
