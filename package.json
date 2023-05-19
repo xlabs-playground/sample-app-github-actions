@@ -3,8 +3,5 @@
     "version": "0.0.0",
     "scripts": {
         "build": "bash scripts/build.sh ${PWD} @xlabs-playground/sample-app-github-actions testnet"
-    },
-    "dependencies": {
-        "a8d03d4924": "npm:@xlabs-playground/sample-app-github-actions@^0.2.0-Tb65d01f3cd"
     }
 }
