@@ -2,7 +2,7 @@
     "name": "@xlabs-playground/testnet-deploy",
     "version": "0.0.0",
     "scripts": {
-        "build": "bash scripts/build.sh testnet"
+        "build": "bash scripts/build.sh @xlabs-playground testnet"
     },
     "dependencies": {}
 }
