@@ -1,0 +1,8 @@
+{
+  "name": "sample-app-github-actions",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p build && echo 'Hello World' > build/index.html"
+  }
+}
