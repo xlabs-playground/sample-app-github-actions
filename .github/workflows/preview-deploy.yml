@@ -60,6 +60,9 @@ jobs:
     name: "Publish"
     needs: build
     runs-on: "ubuntu-latest"
+    concurrency:
+      group: ${{ github.ref }}-preview
+      cancel-in-progress: true
     permissions:
       contents: read
       packages: write
@@ -82,6 +85,9 @@ jobs:
     name: "Deploy Preview"
     needs: publish
     runs-on: "ubuntu-latest"
+    concurrency:
+      group: ${{ github.ref }}-preview
+      cancel-in-progress: true
     permissions:
       contents: write
     steps:
