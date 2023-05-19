@@ -68,6 +68,7 @@ jobs:
           cat $NPM_CONFIG_USERCONFIG
       - name: Publish
         env:
+          ACTIONS_STEP_DEBUG: true
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat ${NPM_CONFIG_USERCONFIG}
