@@ -63,6 +63,9 @@ jobs:
         with:
           node-version: v16.19.1
           registry-url: https://npm.pkg.github.com
+      - name: Debug
+        run: |
+          cat $NPM_CONFIG_USERCONFIG
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
