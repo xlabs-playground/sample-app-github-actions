@@ -70,7 +70,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo ${NPM_CONFIG_USERCONFIG}
+          cat ${NPM_CONFIG_USERCONFIG}
+          echo
           npm login
           npm publish --force --verbose
 
