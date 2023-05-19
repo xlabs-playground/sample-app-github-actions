@@ -41,6 +41,17 @@ jobs:
         with:
           name: testnet-build
           path: build
+      - name: Deploy metadata
+        run: |
+          mkdir deploy-metadata
+          pushd deploy-metadata
+          echo ${_BRANCH_NAME_SHA} > .branch-sha
+          echo ${_PKG_VERSION} > .version
+      - name: Upload Deploy metadata
+        uses: actions/upload-artifact@v3
+        with:
+          name: testnet-deploy-metadata
+          path: testnet
 
   publish:
     name: "Publish"
@@ -63,10 +74,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm publish
-      - name: Set Version
-        run: |
-          echo "_PKG_VERSION=${_PKG_VERSION}" >> "${GITHUB_ENV}"
-          echo "_BRANCH_NAME_SHA=${_BRANCH_NAME_SHA}" >> "${GITHUB_ENV}"
   
   deploy:
     name: "Deploy Testnet"
@@ -83,9 +90,16 @@ jobs:
         run: |
           git config user.name "xLabs Playground CI"
           git config user.email "devops@xlabs-playground.xyz"
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: testnet-deploy-metadata
+          path: deploy-metadata
       - name: Trigger a testnet Deploy 
         run: |
           sleep 30s
+          export _PKG_VERSION=$(cat deploy-metadata/.version)
+          export _BRANCH_NAME_SHA=$(cat deploy-metadata/.branch-sha)
           mkdir -p testnet/${_BRANCH_NAME_SHA}
           pushd testnet/${_BRANCH_NAME_SHA}
           [[ ! -f .latest ]] && touch .latest
