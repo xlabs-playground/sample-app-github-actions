@@ -63,7 +63,7 @@ jobs:
 
   deploy:
     name: "Deploy Testnet"
-    needs: build
+    needs: publish
     runs-on: "ubuntu-latest"
     permissions:
       contents: write
