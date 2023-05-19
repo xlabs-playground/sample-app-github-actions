@@ -52,6 +52,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: testnet-build
+      - name: Set up GitHub NPM registry
+        uses: actions/setup-node@v3
+        with:
+          node-version: v16.19.1
+          registry-url: https://npm.pkg.github.com
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
