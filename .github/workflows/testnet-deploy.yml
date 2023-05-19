@@ -128,7 +128,7 @@ jobs:
             github.checks.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              check_run_id: context.payload.check_run.id,
+              check_run_id: context.runId,
               output: {
                 summary: 'The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/',
               }
