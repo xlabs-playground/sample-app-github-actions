@@ -90,7 +90,6 @@ jobs:
       cancel-in-progress: true
     permissions:
       contents: write
-      checks: write
     steps:
       - name: Checkout testnet branch
         uses: actions/checkout@v3
@@ -121,21 +120,4 @@ jobs:
           git add .artifacts .latest
           git commit -m"Update testnet artifacts ${{ env._PKG_VERSION }}"
           git push
-      - uses: actions/github-script@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { id } = await github.checks.create({
-              owner:  context.repo.owner,
-              repo:  context.repo.repo,
-              name: 'Testnet deploy',
-              head_sha: context.sha,
-            });
-            github.checks.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              check_run_id: id,
-              output: {
-                summary: 'The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/',
-              }
-            });
+          echo "The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/" >> ${GITHUB_STEP_SUMMARY}
