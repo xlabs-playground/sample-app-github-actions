@@ -1,15 +1,22 @@
 #!/bin/env bash
-source $(dirname -- ${0})/common.sh
+ROOT=${1}
+PKG_NAME=${2}
+CLUSTER=${3}
 
-DEPLOY=${1}
-ARTIFACTS=${PWD}/${DEPLOY}
+install() {
+    local ALIAS=${1}
+    local PKG_NAME=${2}
+    local VERSION=${3}
+    npm install ${ALIAS}@npm:${PKG_NAME}@${VERSION}
+}
 
-if [[ -f ${ARTIFACTS} ]]; then
-    for BRANCH_SHA in $(ls ${ARTIFACTS}); do
-        VERSION=$(cat ${ARTIFACTS}/${BRANCH_SHA}/.latest)
-        install ${BRANCH_SHA} ${VERSION}
+if [[ -d ${CLUSTER} ]]; then
+    for BRANCH_SHA in $(ls ${CLUSTER}); do
+        VERSION=$(cat ${ROOT}/${CLUSTER}/${BRANCH_SHA}/.latest)
+        install ${BRANCH_SHA} ${PKG_NAME} ${VERSION}
+        echo Installed ${BRANCH_SHA} ${PKG_NAME} ${VERSION}
     done
     mv node_modules build
 else
-    echo "No artifacts found at ${ARTIFACTS}"
+    echo "No artifacts found at ${CLUSTER}"
 fi

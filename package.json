@@ -1,8 +1,7 @@
 {
-    "name": "@xlabs-playground/sample-app-github-actions",
+    "name": "@xlabs-playground/testnet-deploy",
     "version": "0.0.0",
     "scripts": {
-        "build": "bash scripts/build.sh preview"
-    },
-    "dependencies": {}
+        "build": "bash scripts/build.sh ${PWD} @xlabs-playground/sample-app-github-actions testnet"
+    }
 }
