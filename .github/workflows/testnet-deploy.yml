@@ -104,27 +104,29 @@ jobs:
         with:
           name: testnet-deploy-metadata
           path: deploy-metadata
+      - name: Set deploy metadata
+        run: |
+          echo "_PKG_VERSION=$(cat deploy-metadata/.version)" >> ${GITHUB_ENV}
+          echo "_BRANCH_NAME_SHA=$(cat deploy-metadata/.branch-sha)" >> ${GITHUB_ENV}
       - name: Trigger a testnet Deploy 
         run: |
           sleep 30s
-          export _PKG_VERSION=$(cat deploy-metadata/.version)
-          export _BRANCH_NAME_SHA=$(cat deploy-metadata/.branch-sha)
-          mkdir -p testnet/${_BRANCH_NAME_SHA}
-          pushd testnet/${_BRANCH_NAME_SHA}
+          mkdir -p testnet/${{ env._BRANCH_NAME_SHA }}
+          pushd testnet/${{ env._BRANCH_NAME_SHA }}
           [[ ! -f .latest ]] && touch .latest
           [[ ! -f .artifacts ]] && touch .artifacts
           cat .latest >> .artifacts
-          echo ${_PKG_VERSION} > .latest
+          echo ${{ env._PKG_VERSION }} > .latest
           git add .artifacts .latest
-          git commit -m"Update testnet artifacts ${_PKG_VERSION}"
+          git commit -m"Update testnet artifacts ${{ env._PKG_VERSION }}"
           git push
       - uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
+            github.repos.createDeployment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'The testnet URL is: ${{ vars.TESTNET_ROOT_URL }}/${{ env._BRANCH_NAME_SHA }}/'
+              ref: github.ref,
+              payload: 'The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/'
             });
