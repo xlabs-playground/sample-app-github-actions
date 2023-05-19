@@ -29,7 +29,7 @@ jobs:
       - name: Build
         env:
           PUBLIC_URL: "/${{ env._BRANCH_NAME_SHA }}"
-          REACT_APP_CLUSTER: preview
+          REACT_APP_CLUSTER: mainnet
         run: |
           pushd public
           npm run set-version
