@@ -1,9 +1,10 @@
 #!/bin/env bash
+set +x
 source $(dirname -- ${0})/common.sh
 
 ARTIFACT_NAME=${1}
 ENV=${2}
-ARTIFACTS=${PWD}/${DEPLOY}
+ARTIFACTS=$(dirname -- ${0})/${DEPLOY}
 
 if [[ -d ${ARTIFACTS} ]]; then
     for BRANCH_SHA in $(ls ${ARTIFACTS}); do
