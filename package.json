@@ -1,5 +1,5 @@
 {
-    "name": "@xlabs-playground/short-sha256sum-action",
+    "name": "@xlabs-playground/sample-app-github-actions",
     "version": "0.0.0",
     "scripts": {
         "build": "bash scripts/build.sh preview"
