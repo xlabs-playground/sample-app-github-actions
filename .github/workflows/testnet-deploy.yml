@@ -56,9 +56,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd build
           npm run set-version
-          echo ${NODE_AUTH_TOKEN}
           npm publish
 
   deploy:
