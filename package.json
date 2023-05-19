@@ -1,5 +1,5 @@
 {
-  "name": "sample-app-github-actions",
+  "name": "@xlabs-playground/sample-app-github-actions",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
