@@ -32,6 +32,9 @@ jobs:
           PUBLIC_URL: ${{ env._PKG_VERSION }}
           REACT_APP_CLUSTER: testnet
         run: |
+          pushd public
+          npm run set-version
+          popd
           echo 'REACT_APP_VERSION=$npm_package_version' > .env
           npm run build
       - name: Upload Artifact
@@ -60,9 +63,7 @@ jobs:
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm run set-version
-          npm publish
+        run: npm publish
 
   deploy:
     name: "Deploy Testnet"
