@@ -24,6 +24,7 @@ jobs:
         run: npm ci
       - name: Compute Version
         run: |
+          cat $NPM_CONFIG_USERCONFIG
           npm version prerelease --preid $(echo ${{ github.sha }} | cut -c -10)
           echo "_PKG_VERSION=$(node -p -e "require('./package.json').version")" >> "${GITHUB_ENV}"
           echo "_BRANCH_NAME_SHA=$(echo ${{ github.event.pull_request.head.ref }} | sha256sum | cut -c -10)" >> "${GITHUB_ENV}"
