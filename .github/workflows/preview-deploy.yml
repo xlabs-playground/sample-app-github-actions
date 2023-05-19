@@ -9,7 +9,7 @@ jobs:
     name: "Build"
     runs-on: "ubuntu-latest"
     concurrency:
-      group: ${{ github.ref }}
+      group: ${{ github.ref }}-preview
       cancel-in-progress: true
     steps:
       - name: Checkout repository
