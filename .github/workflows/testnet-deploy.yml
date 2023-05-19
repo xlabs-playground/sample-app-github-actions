@@ -107,5 +107,5 @@ jobs:
           cat .latest >> .artifacts
           echo ${_PKG_VERSION} > .latest
           git add .artifacts .latest
-          git commit -m"Update testnet artifacts"
+          git commit -m"Update testnet artifacts ${_PKG_VERSION}"
           git push
