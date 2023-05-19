@@ -40,6 +40,7 @@ jobs:
         run: |
           cd build
           npm run set-version
+          echo ${NODE_AUTH_TOKEN}
           npm publish
       - name: Checkout testnet branch
         uses: actions/checkout@v3
