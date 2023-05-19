@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: testnet-deploy-metadata
-          path: testnet
+          path: deploy-metadata
 
   publish:
     name: "Publish"
