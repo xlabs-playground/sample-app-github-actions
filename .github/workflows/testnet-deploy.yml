@@ -67,6 +67,7 @@ jobs:
         run: |
           echo "_PKG_VERSION=${_PKG_VERSION}" >> "${GITHUB_ENV}"
           echo "_BRANCH_NAME_SHA=${_BRANCH_NAME_SHA}" >> "${GITHUB_ENV}"
+  
   deploy:
     name: "Deploy Testnet"
     needs: publish
