@@ -129,5 +129,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               check_run_id: context.run_id,
-              output.summary: 'The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/',
+              output: {
+                summary: 'The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/',
+              }
             });
