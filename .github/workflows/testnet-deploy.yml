@@ -128,6 +128,6 @@ jobs:
             github.repos.createDeployment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: github.ref,
+              ref: context.ref,
               payload: 'The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/'
             });
