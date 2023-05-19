@@ -90,6 +90,7 @@ jobs:
       cancel-in-progress: true
     permissions:
       contents: write
+      deployments: write
     steps:
       - name: Checkout testnet branch
         uses: actions/checkout@v3
