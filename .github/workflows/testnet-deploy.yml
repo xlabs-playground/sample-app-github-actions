@@ -36,12 +36,12 @@ jobs:
           echo 'REACT_APP_VERSION=$npm_package_version' > .env
           npm run build
           npm publish
-      - name: Checkout preview branch
+      - name: Checkout testnet branch
         uses: actions/checkout@v3
         with:
-          ref: preview
-          path: preview
-      - name: Trigger a preview Deploy 
+          ref: testnet
+          path: testnet
+      - name: Trigger a testnet Deploy 
         run: |
           mkdir -p testnet/${_BRANCH_NAME_SHA}
           pushd testnet/${_BRANCH_NAME_SHA}
@@ -50,5 +50,5 @@ jobs:
           cat .latest >> .artifacts
           echo ${_PKG_VERSION} > .latest
           git add .artifacts .latest
-          git commit -m"Update preview artifacts"
+          git commit -m"Update testnet artifacts"
           git push
