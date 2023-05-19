@@ -125,10 +125,16 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const { id } = await github.checks.create({
+              owner:  context.repo.owner,
+              repo:  context.repo.repo,
+              name: 'Testnet deploy',
+              head_sha: context.sha,
+            });
             github.checks.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              check_run_id: context.runId,
+              check_run_id: id,
               output: {
                 summary: 'The testnet URL is: https://testnet.sample-app-github-actions.pages.dev/${{ env._BRANCH_NAME_SHA }}/',
               }
