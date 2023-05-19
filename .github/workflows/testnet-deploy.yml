@@ -73,8 +73,7 @@ jobs:
         run: |
           cat ${NPM_CONFIG_USERCONFIG}
           echo
-          npm login
-          npm publish --force --verbose
+          npm publish --verbose
 
   deploy:
     name: "Deploy Testnet"
