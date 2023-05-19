@@ -106,8 +106,8 @@ jobs:
           path: deploy-metadata
       - name: Set deploy metadata
         run: |
-          cat deploy-metadata/.version >> ${GITHUB_ENV}
-          cat deploy-metadata/.branch-sha >> ${GITHUB_ENV}
+          echo "_PKG_VERSION=$(cat deploy-metadata/.version)" >> ${GITHUB_ENV}
+          echo "_BRANCH_NAME_SHA=$(cat deploy-metadata/.branch-sha)" >> ${GITHUB_ENV}
       - name: Trigger a preview Deploy 
         run: |
           sleep 30s
