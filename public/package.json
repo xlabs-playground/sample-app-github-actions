@@ -1,0 +1,7 @@
+{
+    "name": "@xlabs-playground/sample-app-github-actions",
+    "version": "0.0.0",
+    "scripts": {
+        "set-version": "npm version $(cd .. && node --print 'require(\"./package.json\").version')"
+    }
+}

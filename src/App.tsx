@@ -19,7 +19,7 @@ function App() {
           Learn React
         </a>
       </header>
-      v{process.env.REACT_APP_VERSION} - ${process.env.REACT_APP_CLUSTER}
+      v{process.env.REACT_APP_VERSION} - {process.env.REACT_APP_CLUSTER}
     </div>
   );
 }
